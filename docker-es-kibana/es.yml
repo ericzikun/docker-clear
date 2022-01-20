@@ -1,0 +1,19 @@
+version: "3.2"
+  
+services:
+  elasticsearch:
+     image: elasticsearch:7.4.1   
+     restart: always                     
+     environment:
+       discovery.type: single-node         
+     ports:
+       - "9205:9200"                      
+       - "9305:9300"
+  kibana:
+    image: kibana:7.4.1                    
+    restart: always                        
+    environment:
+      ELASTICSEARCH_URL: "127.0.0.1:9200"   
+      I18N_LOCALE: "zh-CN"                 
+    ports:
+       - "5605:5601"                        
